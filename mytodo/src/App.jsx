@@ -1,33 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import TodoList from "./components/TodoList";
+import TodoInput from "./components/TodoInput";
+import { useState } from "react";
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  //for input we use states so that user can input
+  const[todos, setTodos] = useState([
+    "Go to the gym",
+    "Eat more fruits"
+  ])
+
+  // we need to update the value of the variable using setTodos
+  function updateTodo (newTodo) {
+    const newTodoList = [...todos, newTodo]
+    setTodos(newTodoList)
+  }
+  
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <>
+      <TodoInput />
+      <TodoList todos = {todos}/>
+    </>
   )
 }
 
